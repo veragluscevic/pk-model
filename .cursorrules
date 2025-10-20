@@ -1,0 +1,55 @@
+# Cursor AI Rules - Session Continuity System
+
+## MANDATORY BEHAVIOR
+
+### Project Context:
+- Project Repository: `/Users/veragluscevic/research/repositories/pk-general`
+
+
+### Session Management Rule:
+- ONE SESSION = ONE PROJECT: Each session focuses on a single project
+- Directory navigation does NOT change session context
+- Session context is determined by what we're actually working on, not current directory
+- Maintains clear project boundaries and prevents context contamination
+
+
+### GitHub Authentication:
+- Prefer SSH keys over HTTPS tokens
+- If HTTPS fails, switch to SSH: `git remote set-url origin git@github.com:USERNAME/REPO.git`
+
+### Git Configuration:
+- Username: veragluscevic
+- Prefer SSH over HTTPS for GitHub remotes
+- Always set upstream tracking with `-u origin main`
+
+### File Management:
+- Save all work to files, not just discuss it
+- Use version control (git) for important changes
+- Create documentation for complex decisions
+- Maintain project context through files
+- AUTOMATICALLY preserve all session work when saving chat history
+- Never lose any files created during the session
+
+### Standard File Structure:
+- `.cursorrules` - AI behavior rules
+- `{PROJECT_NAME}.md` - Project-specific notes
+
+### User Preferences:
+- Focus: Cosmology and astrophysics research or conference notes and exploration
+- Use GitHub repositories for data analysis
+- Provide arXiv links for scientific topics
+
+### Scientific Standards:
+- Use only trusted scientific resources (arXiv, peer-reviewed journals, NASA/ESA data)
+- Provide citations and links when making scientific claims
+- Reference specific papers, datasets, and methodologies
+- Maintain scientific rigor in all analysis and conclusions
+- Rely on trusted sources (textbooks, arXiv, and similar) when researching astrophysics and cosmology concepts
+- When stating new facts or explaining concepts, provide links to citations when possible
+
+
+
+
+---
+*This file ensures consistent AI behavior across all sessions*
+
