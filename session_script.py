@@ -36,25 +36,23 @@ def plot_power_law_function(a_vals, b_vals, g_vals, k_range=(1e-3, 10), n_points
     # Create k array
     k = np.logspace(np.log10(k_range[0]), np.log10(k_range[1]), n_points)
     
-    # Get middle values for fixed parameters (use middle index)
-    n_vals = len(a_vals)
-    mid_idx = n_vals // 2
-    a_mid = a_vals[mid_idx]
-    b_mid = b_vals[mid_idx]
-    g_mid = g_vals[mid_idx]
+    # Get middle values for fixed parameters (use middle index of each array)
+    a_mid = a_vals[len(a_vals) // 2]
+    b_mid = b_vals[len(b_vals) // 2]
+    g_mid = g_vals[len(g_vals) // 2]
     
     # Create figure with 3 subplots
     fig, axes = plt.subplots(1, 3, figsize=(15, 4))
     
-    # Color map and line styles for better visibility with more curves
-    colors = plt.cm.viridis(np.linspace(0.1, 0.9, n_vals))
-    linestyles = ['-', '--', '-.', ':', (0, (3, 1, 1, 1))]  # 5 different styles
+    # Line styles that can be cycled through
+    linestyles = ['-', '--', '-.', ':', (0, (3, 1, 1, 1))]
     
     # Plot 1: Vary 'a'
     ax = axes[0]
+    colors_a = plt.cm.viridis(np.linspace(0.1, 0.9, len(a_vals)))
     for i, a in enumerate(a_vals):
         y = (1 + (a * k)**b_mid)**g_mid
-        ax.loglog(k, y, color=colors[i], linestyle=linestyles[i % len(linestyles)], 
+        ax.loglog(k, y, color=colors_a[i], linestyle=linestyles[i % len(linestyles)], 
                   linewidth=2, label=f'a = {a:.2f}')
     ax.set_xlabel('k', fontsize=12)
     ax.set_ylabel(r'$[1 + (ak)^b]^g$', fontsize=12)
@@ -64,9 +62,10 @@ def plot_power_law_function(a_vals, b_vals, g_vals, k_range=(1e-3, 10), n_points
     
     # Plot 2: Vary 'b'
     ax = axes[1]
+    colors_b = plt.cm.viridis(np.linspace(0.1, 0.9, len(b_vals)))
     for i, b in enumerate(b_vals):
         y = (1 + (a_mid * k)**b)**g_mid
-        ax.loglog(k, y, color=colors[i], linestyle=linestyles[i % len(linestyles)], 
+        ax.loglog(k, y, color=colors_b[i], linestyle=linestyles[i % len(linestyles)], 
                   linewidth=2, label=f'b = {b:.2f}')
     ax.set_xlabel('k', fontsize=12)
     ax.set_ylabel(r'$[1 + (ak)^b]^g$', fontsize=12)
@@ -76,9 +75,10 @@ def plot_power_law_function(a_vals, b_vals, g_vals, k_range=(1e-3, 10), n_points
     
     # Plot 3: Vary 'g'
     ax = axes[2]
+    colors_g = plt.cm.viridis(np.linspace(0.1, 0.9, len(g_vals)))
     for i, g in enumerate(g_vals):
         y = (1 + (a_mid * k)**b_mid)**g
-        ax.loglog(k, y, color=colors[i], linestyle=linestyles[i % len(linestyles)], 
+        ax.loglog(k, y, color=colors_g[i], linestyle=linestyles[i % len(linestyles)], 
                   linewidth=2, label=f'g = {g:.2f}')
     ax.set_xlabel('k', fontsize=12)
     ax.set_ylabel(r'$[1 + (ak)^b]^g$', fontsize=12)
@@ -98,8 +98,8 @@ if __name__ == "__main__":
     # For k in [0.001, 10], these values show clear variation
     a_values = [0.05, 0.2, 0.5, 1.0, 3.0]       # Scale: where transition happens
     b_values = [0.3, 0.7, 1.0, 1.5, 2.5]        # Steepness of power law
-    g_values = [-3.0, -2.0, -1.0, -0.5, -0.1]   # Overall power (all negative for damping)
-    
+    #g_values = [-3.0, -2.0, -1.0, -0.5, -0.1]   # Overall power (all negative for damping)
+    g_values = [-1.0]
     # Create the plots
     fig = plot_power_law_function(a_values, b_values, g_values)
 
